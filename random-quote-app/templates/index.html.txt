@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Quote Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Quote of the Moment</h1>
+        <p id="quote">Click the button to get a quote</p>
+        <button onclick="fetchQuote()">New Quote</button>
+    </div>
+
+    <script>
+        async function fetchQuote() {
+            const res = await fetch('/get-quote');
+            const data = await res.json();
+            document.getElementById('quote').textContent = data.quote;
+        }
+    </script>
+</body>
+</html>
